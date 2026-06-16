@@ -1,0 +1,12 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+<title>Kesteven Business Centre</title>
+<circle cx="120" cy="120" r="110" fill="#1f3b3a"/>
+<circle cx="120" cy="120" r="95" fill="none" stroke="#7fbfb3" stroke-width="2"/>
+<g fill="none" stroke="#eef2f0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M78 110 L120 78 L162 110"/>
+  <path d="M86 116 h68"/>
+  <path d="M96 121 v39 M112 121 v39 M128 121 v39 M144 121 v39"/>
+  <path d="M86 162 h68"/>
+  <path d="M80 168 h80"/>
+</g>
+</svg>
