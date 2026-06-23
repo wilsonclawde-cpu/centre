@@ -229,66 +229,47 @@
       <h2>Offices to let</h2>
       <p>Refurbished suites on the ground and first floors, let inclusive of heating &amp; lighting on flexible terms. Available now:</p>
     </div>
-    <div class="office-grid">
-      <div class="office-card">
-        <div class="floor">First floor</div>
-        <div class="num">Office 6</div>
-        <div class="size">113 sq ft &middot; 10.5 m²</div>
-        <div class="price">£250 <small>/ month</small></div>
-        <a class="enq" href="#enquire">Enquire →</a>
-      </div>
-      <div class="office-card">
-        <div class="floor">First floor</div>
-        <div class="num">Office 2</div>
-        <div class="size">185 sq ft &middot; 17.2 m²</div>
-        <div class="price">£325 <small>/ month</small></div>
-        <a class="enq" href="#enquire">Enquire →</a>
-      </div>
-      <div class="office-card">
-        <div class="floor">First floor</div>
-        <div class="num">Office 1</div>
-        <div class="size">207 sq ft &middot; 19.2 m²</div>
-        <div class="price">£325 <small>/ month</small></div>
-        <a class="enq" href="#enquire">Enquire →</a>
-      </div>
-      <div class="office-card">
-        <div class="floor">Ground floor</div>
-        <div class="num">Office 9</div>
-        <div class="size">262 sq ft &middot; 24.3 m² &middot; inc. store</div>
-        <div class="price">£450 <small>/ month</small></div>
-        <a class="enq" href="#enquire">Enquire →</a>
-      </div>
-      <div class="office-card">
-        <div class="floor">Ground floor</div>
-        <div class="num">Office 10</div>
-        <div class="size">429 sq ft &middot; 39.9 m²</div>
-        <div class="price">£800 <small>/ month</small></div>
-        <a class="enq" href="#enquire">Enquire →</a>
-      </div>
-      <div class="office-card">
-        <div class="floor">First floor</div>
-        <div class="num">Office 7</div>
-        <div class="size">964 sq ft &middot; 89.6 m²</div>
-        <div class="desc">Three connected suites, let as one.</div>
-        <div class="price">£1,600 <small>/ month</small></div>
-        <a class="enq" href="#enquire">Enquire →</a>
-      </div>
+    
+    <style>
+      .office-card.is-let{opacity:.5;filter:grayscale(.35)}
+      .office-card .let-pill{display:inline-block;background:#9a8f86;color:#fff;cursor:default;pointer-events:none}
+    </style>
+    <div class="office-grid" id="officeGrid"></div>
+    <script>
+      /* ===== EDIT OFFICE AVAILABILITY HERE =====================================
+         One line per office. To update: change a value, or set status to:
+           "available" -> shows the Enquire button
+           "let"       -> greyed out with a "Now let" tag (keeps it listed)
+           "hidden"    -> removed from the page entirely
+         Add a new office by copying a line. Order top-to-bottom = display order.
+      ========================================================================= */
+      const OFFICES = [
+    { floor:"First floor", office:"Office 6", size:"113 sq ft · 10.5 m²", price:"£250", status:"available" },
+    { floor:"First floor", office:"Office 2", size:"185 sq ft · 17.2 m²", price:"£325", status:"available" },
+    { floor:"First floor", office:"Office 1", size:"207 sq ft · 19.2 m²", price:"£325", status:"available" },
+    { floor:"Ground floor", office:"Office 9", size:"262 sq ft · 24.3 m² · inc. store", price:"£450", status:"available" },
+    { floor:"Ground floor", office:"Office 10", size:"429 sq ft · 39.9 m²", price:"£800", status:"available" },
+    { floor:"First floor", office:"Office 7", size:"964 sq ft · 89.6 m²", price:"£1,600", status:"available", note:"Three connected suites, let as one." },
+    { floor:"Something different", office:"Storage in the Cells", size:"", price:"£100", status:"available", note:"The building was Sleaford's old Police Station — and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell." },
+      ];
 
-      <div class="office-card cell">
-        <div>
-          <div class="floor">Something different</div>
-          <div class="num">Storage in the Cells</div>
-          <div class="desc">The building was Sleaford's old Police Station — and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell.</div>
-        </div>
-        <div class="cell-cta">
-          <div class="price">£100 <small>/ month</small></div>
-          <div class="desc">6-month minimum</div>
-          <a class="enq" href="#enquire" style="color:#e0a96d">Enquire →</a>
-        </div>
-      </div>
-    </div>
-    <p class="avail-note">All suites let inclusive of heating &amp; lighting, with shared kitchen &amp; WC facilities and 1Gb fibre broadband available. Minimum 6-month term, then rolling. Small business rates relief likely for qualifying tenants — no VAT on rents. Deposit required.</p>
-  </div>
+      (function(){
+        var grid=document.getElementById("officeGrid"); if(!grid) return;
+        grid.innerHTML = OFFICES.filter(function(o){return o.status!=="hidden";}).map(function(o){
+          var isLet = o.status==="let";
+          var size = o.size ? '<div class="size">'+o.size+'</div>' : "";
+          var note = o.note ? '<div class="desc">'+o.note+'</div>' : "";
+          var action = isLet ? '<span class="enq let-pill">Now let</span>' : '<a class="enq" href="#enquire">Enquire \u2192</a>';
+          return '<div class="office-card'+(isLet?" is-let":"")+'">'
+            + '<div class="floor">'+o.floor+'</div>'
+            + '<div class="num">'+o.office+'</div>'
+            + size
+            + '<div class="price">'+o.price+' <small>/ month</small></div>'
+            + note + action + '</div>';
+        }).join("");
+      })();
+    </script>
+  
 </section>
 
 <section id="amenities" class="amen">
