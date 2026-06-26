@@ -74,7 +74,7 @@
 
   .about{background:var(--surface)}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-  .about-art{aspect-ratio:1/1;border-radius:20px;background:linear-gradient(150deg,#bcd2cc,#7aa39b);position:relative;overflow:hidden}
+  .about-art{aspect-ratio:1/1;border-radius:20px;background:linear-gradient(150deg,#bcd2cc,#7aa39b);position:relative;overflow:hidden}.about-art img{width:100%;height:100%;object-fit:cover;display:block}
   .about-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.4),transparent 60%)}
   .about-text h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.5vw,2.5rem);line-height:1.12;margin-bottom:18px}
   .about-text p{color:var(--muted);margin-bottom:16px;font-size:1.05rem}
@@ -212,7 +212,7 @@
 
 <section id="about" class="about">
   <div class="wrap about-grid">
-    <div class="about-art"></div>
+    <div class="about-art"><img src="kbc-exterior.webp" alt="Kesteven Business Centre building on Kesteven Street, Sleaford" loading="lazy"></div>
     <div class="about-text">
       <div class="eyebrow">Why locate here</div>
       <h2>A professional home, with a bit of history.</h2>
