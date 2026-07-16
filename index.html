@@ -265,26 +265,16 @@
     </style>
     <div class="office-grid" id="officeGrid"></div>
     <script>
-      /* ===== EDIT OFFICE AVAILABILITY HERE =====================================
-         One line per office. To update: change a value, or set status to:
-           "available" -> shows the Enquire button
-           "let"       -> greyed out with a "Now let" tag (keeps it listed)
-           "hidden"    -> removed from the page entirely
-         Add a new office by copying a line. Order top-to-bottom = display order.
-      ========================================================================= */
-      const OFFICES = [
-    { floor:"First floor", office:"Office 6", size:"113 sq ft · 10.5 m²", price:"£250", status:"available" },
-    { floor:"First floor", office:"Office 2", size:"185 sq ft · 17.2 m²", price:"£325", status:"available" },
-    { floor:"First floor", office:"Office 1", size:"207 sq ft · 19.2 m²", price:"£325", status:"available" },
-    { floor:"Ground floor", office:"Office 9", size:"262 sq ft · 24.3 m² · inc. store", price:"£450", status:"available" },
-    { floor:"Ground floor", office:"Office 10", size:"429 sq ft · 39.9 m²", price:"£800", status:"available" },
-    { floor:"First floor", office:"Office 7", size:"964 sq ft · 89.6 m²", price:"£1,600", status:"available", note:"Three connected suites, let as one." },
-    { floor:"Something different", office:"Storage in the Cells", size:"", price:"£100", status:"available", note:"The building was Sleaford's old Police Station — and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell." },
-      ];
+      /* ===== OFFICE AVAILABILITY ============================================
+         Availability now lives in vacancies.json in this repo. EDIT THAT FILE,
+         not this one. status: "available" | "let" | "hidden".
+         The fallback list below is only used if vacancies.json fails to load.
+      ===================================================================== */
+      const OFFICES_FALLBACK = [{"floor": "First floor", "office": "Office 6", "size": "113 sq ft · 10.5 m²", "price": "£250", "status": "available"}, {"floor": "First floor", "office": "Office 2", "size": "185 sq ft · 17.2 m²", "price": "£325", "status": "available"}, {"floor": "First floor", "office": "Office 1", "size": "207 sq ft · 19.2 m²", "price": "£325", "status": "available"}, {"floor": "Ground floor", "office": "Office 9", "size": "262 sq ft · 24.3 m² · inc. store", "price": "£450", "status": "available"}, {"floor": "Ground floor", "office": "Office 10", "size": "429 sq ft · 39.9 m²", "price": "£800", "status": "available"}, {"floor": "First floor", "office": "Office 7", "size": "964 sq ft · 89.6 m²", "price": "£1,600", "status": "available", "note": "Three connected suites, let as one."}, {"floor": "Something different", "office": "Storage in the Cells", "size": "", "price": "£100", "status": "available", "note": "The building was Sleaford's old Police Station — and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell."}];
 
-      (function(){
+      function renderOffices(list){
         var grid=document.getElementById("officeGrid"); if(!grid) return;
-        grid.innerHTML = OFFICES.filter(function(o){return o.status!=="hidden";}).map(function(o){
+        grid.innerHTML = list.filter(function(o){return o.status!=="hidden";}).map(function(o){
           var isLet = o.status==="let";
           var size = o.size ? '<div class="size">'+o.size+'</div>' : "";
           var note = o.note ? '<div class="desc">'+o.note+'</div>' : "";
@@ -296,7 +286,12 @@
             + '<div class="price">'+o.price+' <small>/ month</small></div>'
             + note + action + '</div>';
         }).join("");
-      })();
+      }
+
+      fetch("vacancies.json?v=" + Date.now())
+        .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(d){ renderOffices(d.offices); })
+        .catch(function(){ renderOffices(OFFICES_FALLBACK); });
     </script>
   
 </section>

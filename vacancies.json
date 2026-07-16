@@ -1,0 +1,57 @@
+{
+  "_readme": "Office availability for centre.tagsleaford.com. EDIT THIS FILE ONLY - index.html renders it automatically. status: available (Enquire button) | let (greyed out, still listed) | hidden (removed from page). Order = display order. After editing, commit to main; GitHub Pages redeploys in ~1 min.",
+  "updated": "2026-07-16",
+  "offices": [
+    {
+      "floor": "First floor",
+      "office": "Office 6",
+      "size": "113 sq ft · 10.5 m²",
+      "price": "£250",
+      "status": "available"
+    },
+    {
+      "floor": "First floor",
+      "office": "Office 2",
+      "size": "185 sq ft · 17.2 m²",
+      "price": "£325",
+      "status": "available"
+    },
+    {
+      "floor": "First floor",
+      "office": "Office 1",
+      "size": "207 sq ft · 19.2 m²",
+      "price": "£325",
+      "status": "available"
+    },
+    {
+      "floor": "Ground floor",
+      "office": "Office 9",
+      "size": "262 sq ft · 24.3 m² · inc. store",
+      "price": "£450",
+      "status": "available"
+    },
+    {
+      "floor": "Ground floor",
+      "office": "Office 10",
+      "size": "429 sq ft · 39.9 m²",
+      "price": "£800",
+      "status": "available"
+    },
+    {
+      "floor": "First floor",
+      "office": "Office 7",
+      "size": "964 sq ft · 89.6 m²",
+      "price": "£1,600",
+      "status": "available",
+      "note": "Three connected suites, let as one."
+    },
+    {
+      "floor": "Something different",
+      "office": "Storage in the Cells",
+      "size": "",
+      "price": "£100",
+      "status": "available",
+      "note": "The building was Sleaford's old Police Station — and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell."
+    }
+  ]
+}
