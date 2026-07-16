@@ -148,11 +148,13 @@
     .amen-grid{grid-template-columns:1fr 1fr}
     .office-card.cell{grid-column:span 1;grid-template-columns:1fr}
     .office-card.cell .cell-cta{align-items:flex-start}
-    .nav-links{display:none}
+    .nav-links a:not(.nav-cta){display:none}
     section{padding:60px 0}
   }
   @media(max-width:480px){ .row{grid-template-columns:1fr} }
-#enquire select{background-color:#16352e!important;color:#fff!important}#enquire select option{background-color:#16352e;color:#fff}</style>
+#enquire select{background-color:#16352e!important;color:#fff!important}#enquire select option{background-color:#16352e;color:#fff}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}</style>
 
   <meta name="geo.region" content="GB-LIN">
   <meta name="geo.placename" content="Sleaford, Lincolnshire">
@@ -214,18 +216,7 @@
       </div>
     </div>
     <div class="hero-art">
-      <svg viewBox="0 0 400 320" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid slice">
-        <path d="M40 290 h320"/>
-        <path d="M70 290 V150 h80 v140"/>
-        <path d="M150 290 V80 h110 v210"/>
-        <path d="M260 290 V170 h74 v120"/>
-        <g opacity=".85">
-          <path d="M92 176 h36 M92 202 h36 M92 230 h36"/>
-          <path d="M174 110 h62 M174 140 h62 M174 170 h62 M174 200 h62 M174 230 h62"/>
-          <path d="M205 100 V290"/>
-          <path d="M282 196 h34 M282 224 h34"/>
-        </g>
-      </svg>
+      <img src="kbc-exterior.webp" alt="Kesteven Business Centre — Sleaford's former police station on Kesteven Street" width="1024" height="677" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
     </div>
   </div>
 </header>
@@ -241,7 +232,7 @@
 
 <section id="about" class="about">
   <div class="wrap about-grid">
-    <div class="about-art"><img src="kbc-exterior.webp" alt="Kesteven Business Centre building on Kesteven Street, Sleaford" loading="lazy"></div>
+    <div class="about-art"><img src="kbc-office-window.webp" alt="Bright refurbished office suite with large windows at Kesteven Business Centre" loading="lazy" decoding="async" width="1024" height="677"></div>
     <div class="about-text">
       <div class="eyebrow">Why locate here</div>
       <h2>A professional home, with a bit of history.</h2>
@@ -293,7 +284,7 @@
         .then(function(d){ renderOffices(d.offices); })
         .catch(function(){ renderOffices(OFFICES_FALLBACK); });
     </script>
-  
+    <p class="avail-note">Every suite is let inclusive of heating &amp; lighting on a simple monthly licence. <a href="Kesteven_Floorplan.pdf" style="color:var(--accent);font-weight:600">View the floor plan (PDF)</a> &middot; <a href="gallery.html" style="color:var(--accent);font-weight:600">See inside in the gallery</a></p>
 </section>
 
 <section id="amenities" class="amen">
@@ -328,6 +319,10 @@
         <div class="info-line">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
           <span><strong>Kesteven Business Centre</strong><br>Kesteven Street, Sleaford, NG34 7DT<br><span style="color:var(--muted);font-size:.9rem">Opposite the council offices</span></span>
+        </div>
+        <div class="info-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Call us on <a href="tel:+441522424963" style="color:var(--accent);font-weight:600">01522 424963</a></span>
         </div>
         <div class="info-line">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -384,7 +379,8 @@
         <a href="#about">About</a>
         <a href="#available">Available offices</a>
         <a href="#amenities">Amenities</a>
-          <a href="gallery.html">Gallery</a>
+        <a href="office-space-sleaford.html">Office space in Sleaford</a>
+        <a href="gallery.html">Gallery</a>
         <a href="#enquire">Enquire</a>
       </div>
       <div class="foot-col">
@@ -392,10 +388,12 @@
         <a href="https://tagsleaford.com">tagsleaford.com</a>
         <a href="https://coffee.tagsleaford.com">Kesteven Coffee Shop</a>
         <a href="https://coffee.tagsleaford.com/lounge">Kesteven Lounge</a>
+        <a href="https://glowsleaford.com" rel="noopener">GLOW Sleaford</a>
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
         <a href="#enquire">Enquire about offices</a>
+        <a href="tel:+441522424963">01522 424963</a>
         <a href="#location">Kesteven Street, Sleaford</a>
       </div>
     </div>
