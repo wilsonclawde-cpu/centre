@@ -11,6 +11,13 @@
     },
     {
       "floor": "First floor",
+      "office": "Office 4",
+      "size": "210 sq ft · 19.5 m²",
+      "price": "£300",
+      "status": "available"
+    },
+    {
+      "floor": "First floor",
       "office": "Office 2",
       "size": "185 sq ft · 17.2 m²",
       "price": "£325",
@@ -29,6 +36,14 @@
       "size": "262 sq ft · 24.3 m² · inc. store",
       "price": "£450",
       "status": "available"
+    },
+    {
+      "floor": "Ground floor",
+      "office": "Office 13",
+      "size": "288 sq ft · 26.8 m²",
+      "price": "£450 + £45 internet",
+      "status": "available",
+      "note": "Available from 1 September 2026."
     },
     {
       "floor": "Ground floor",
