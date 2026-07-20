@@ -1,62 +1,55 @@
 {
   "_readme": "Office availability for centre.tagsleaford.com. EDIT THIS FILE ONLY - index.html renders it automatically. status: available (Enquire button) | let (greyed out, still listed) | hidden (removed from page). Order = display order. After editing, commit to main; GitHub Pages redeploys in ~1 min.",
-  "updated": "2026-07-16",
+  "updated": "2026-07-17",
   "offices": [
     {
       "floor": "First floor",
       "office": "Office 6",
-      "size": "113 sq ft · 10.5 m²",
-      "price": "£250",
-      "status": "available"
-    },
-    {
-      "floor": "First floor",
-      "office": "Office 4",
-      "size": "210 sq ft · 19.5 m²",
-      "price": "£300",
+      "size": "113 sq ft \u00b7 10.5 m\u00b2",
+      "price": "\u00a3250",
       "status": "available"
     },
     {
       "floor": "First floor",
       "office": "Office 2",
-      "size": "185 sq ft · 17.2 m²",
-      "price": "£325",
+      "size": "185 sq ft \u00b7 17.2 m\u00b2",
+      "price": "\u00a3325",
       "status": "available"
     },
     {
       "floor": "First floor",
       "office": "Office 1",
-      "size": "207 sq ft · 19.2 m²",
-      "price": "£325",
+      "size": "207 sq ft \u00b7 19.2 m\u00b2",
+      "price": "\u00a3325",
       "status": "available"
     },
     {
       "floor": "Ground floor",
       "office": "Office 9",
-      "size": "262 sq ft · 24.3 m² · inc. store",
-      "price": "£450",
+      "size": "262 sq ft \u00b7 24.3 m\u00b2 \u00b7 inc. store",
+      "price": "\u00a3450",
       "status": "available"
     },
     {
       "floor": "Ground floor",
       "office": "Office 13",
-      "size": "288 sq ft · 26.8 m²",
-      "price": "£450 + £45 internet",
+      "size": "288 sq ft \u00b7 26.8 m\u00b2",
+      "price": "\u00a3450 + \u00a345 internet",
       "status": "available",
-      "note": "Available from 1 September 2026."
+      "note": "Available from 1 October 2026."
     },
     {
       "floor": "Ground floor",
       "office": "Office 10",
-      "size": "429 sq ft · 39.9 m²",
-      "price": "£800",
+      "size": "429 sq ft \u00b7 39.9 m\u00b2",
+      "price": "\u00a3800",
       "status": "available"
     },
     {
       "floor": "First floor",
       "office": "Office 7",
-      "size": "964 sq ft · 89.6 m²",
-      "price": "£1,600",
+      "size": "964 sq ft \u00b7 89.6 m\u00b2",
+      "price": "\u00a31,600",
       "status": "available",
       "note": "Three connected suites, let as one."
     },
@@ -64,9 +57,9 @@
       "floor": "Something different",
       "office": "Storage in the Cells",
       "size": "",
-      "price": "£100",
+      "price": "\u00a3100",
       "status": "available",
-      "note": "The building was Sleaford's old Police Station — and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell."
+      "note": "The building was Sleaford's old Police Station \u2014 and the original cells are still here. Rent one for storage: secure, characterful, and quite the story to tell."
     }
   ]
 }
