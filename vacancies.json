@@ -1,6 +1,6 @@
 {
   "_readme": "Office availability for centre.tagsleaford.com. EDIT THIS FILE ONLY - index.html renders it automatically. status: available (Enquire button) | let (greyed out, still listed) | hidden (removed from page). Order = display order. After editing, commit to main; GitHub Pages redeploys in ~1 min.",
-  "updated": "2026-08-20",
+  "updated": "2026-08-27",
   "offices": [
     {
       "floor": "First floor",
@@ -13,9 +13,9 @@
       "floor": "First floor",
       "office": "Office 11",
       "size": "113 sq ft · 10.5 m²",
-      "price": "£275 + £30 internet",
-      "status": "available",
-      "note": "Available now."
+      "price": "£275 + 10% SC",
+      "status": "let",
+      "note": "Let subject to signature & payment."
     },
     {
       "floor": "First floor",
