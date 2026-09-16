@@ -18,6 +18,14 @@
     },
     {
       "floor": "First floor",
+      "office": "Office 5",
+      "size": "185 sq ft · 17.2 m²",
+      "price": "£325",
+      "status": "available",
+      "note": "Available from 1 January 2027 — viewings by arrangement."
+    },
+    {
+      "floor": "First floor",
       "office": "Office 8",
       "size": "185 sq ft · 17.2 m²",
       "price": "£325",
