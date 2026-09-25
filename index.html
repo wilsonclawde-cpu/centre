@@ -85,7 +85,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-h
 .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .nav-links a:not(.btn):hover::after,.nav-links a[aria-current]::after{transform:scaleX(1)}
 .nav-links .btn{padding:11px 20px;font-size:.9rem}
-@media(max-width:900px){.nav-links a:not(.btn){display:none}}
+@media(max-width:960px){.nav-links a:not(.btn){display:none}}
 section{padding:clamp(72px,9vw,120px) 0}
 .sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px;align-items:end;margin-bottom:clamp(36px,5vw,60px)}
 .sec-head h2{font-size:clamp(2.2rem,5vw,4.2rem);margin-top:14px}
@@ -229,7 +229,14 @@ textarea{min-height:120px;resize:vertical}
 @media(max-width:480px){.row{grid-template-columns:1fr}}
 /* Residents */
 .residents{background:var(--paper)}
-.res-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:16px}.res-grid .res-card{grid-column:1}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.res-card .mark{position:absolute;left:20px;top:20px;background:#fff;border-radius:var(--r-sm);padding:8px 12px;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
+.res-card .mark img{position:static;width:auto;height:38px;object-fit:contain;transition:none}
+.res-card .meta{font-family:var(--display);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
+.res-card .links{display:flex;flex-wrap:wrap;gap:8px 22px}
+.res-grid .res-card{padding-top:88px}
+.res-grid .res-card::before{background:linear-gradient(180deg,rgba(11,12,16,.12) 0%,rgba(11,12,16,.6) 45%,rgba(11,12,16,.94) 100%)}
+.res-more{margin-top:22px}
 .res-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:360px;border-radius:var(--r);overflow:hidden;padding:32px;color:#fff;isolation:isolate;background:var(--ink)}
 .res-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
 .res-card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,12,16,0) 25%,rgba(11,12,16,.92) 100%)}
@@ -237,7 +244,7 @@ textarea{min-height:120px;resize:vertical}
 .res-card h3{font-size:clamp(1.6rem,2.6vw,2.2rem);margin-bottom:10px}
 .res-card p{color:rgba(255,255,255,.82);margin-bottom:16px;max-width:50ch}
 .res-card a{font-family:var(--display);font-weight:700;color:var(--accent)}
-@media(max-width:720px){.res-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.res-grid{grid-template-columns:1fr}.res-card{min-height:320px}}
 </style>
 </head>
 <body>
@@ -250,6 +257,7 @@ textarea{min-height:120px;resize:vertical}
       <a href="#amenities">Amenities</a>
       <a href="#location">Location</a>
       <a href="gallery.html">Gallery</a>
+      <a href="tenants.html">Businesses</a>
       <a class="btn btn-accent nav-cta" href="#enquire">Enquire</a>
     </div>
   </div>
@@ -415,12 +423,41 @@ textarea{min-height:120px;resize:vertical}
 <section id="residents" class="residents">
   <div class="wrap">
     <div class="sec-head">
-      <div class="reveal"><span class="eyebrow">Also in the building</span><h2>Good <span class="em">company.</span></h2></div>
-      <p class="reveal" data-delay="1">You won’t be working alone — Kesteven Business Centre is home to independent Sleaford businesses.</p>
+      <div class="reveal"><span class="eyebrow">Businesses at the centre</span><h2>Good <span class="em">company.</span></h2></div>
+      <p class="reveal" data-delay="1">You won’t be working alone — Kesteven Business Centre is home to independent businesses, from a superfood café on the ground floor to an international food-ingredients agency upstairs.</p>
     </div>
-    <div class="res-grid">
-      <div class="res-card reveal"><img src="https://tagsleaford.com/glow-door.jpg" alt="A GLOW Sleaford superfood bowl — the café on the ground floor of Kesteven Business Centre, Sleaford" width="800" height="800" loading="lazy"><h3>GLOW Sleaford</h3><p>The superfood café on the ground floor — açaí bowls, protein shakes, smoothies, coffee &amp; matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats.</p><a href="https://glowsleaford.com" rel="noopener">Visit GLOW Sleaford →</a></div>
+    <div class="res-grid" id="residentGrid">
+      <div class="res-card reveal" id="res-glow-sleaford"><img src="https://tagsleaford.com/glow-door.jpg" alt="A GLOW Sleaford superfood bowl — the café on the ground floor of Kesteven Business Centre, Sleaford" width="800" height="800" loading="lazy"><div class="meta">Superfood café</div><h3>GLOW Sleaford</h3><p>Açaí bowls, protein shakes, smoothies, coffee &amp; matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats.</p><div class="links"><a href="https://glowsleaford.com" rel="noopener">Visit glowsleaford.com &rarr;</a><a href="tenants.html#glow-sleaford">Full profile &rarr;</a></div></div>
+      <div class="res-card reveal" id="res-k2b"><img src="k2b-flax-field.webp" alt="A field of flax in flower — K2B Ltd, food and drink ingredients supplier at Kesteven Business Centre, Sleaford" width="1600" height="1177" loading="lazy"><div class="mark"><img src="k2b-logo.webp" alt="K2B Ltd logo" width="1792" height="1267" loading="lazy"></div><div class="meta">Food &amp; drink ingredients</div><h3>K2B Ltd</h3><p>A specialist supplier of natural, clean-label food and drink ingredients — agent for worldwide manufacturers for over 20 years, ISO 9001:2015 certified.</p><div class="links"><a href="https://k2b.co.uk/" rel="noopener">Visit k2b.co.uk &rarr;</a><a href="tenants.html#k2b">Full profile &rarr;</a></div></div>
     </div>
+    <script>
+      /* ===== BUSINESSES AT THE CENTRE ======================================
+         The cards above are a static fallback. The live list is tenants.json
+         (status: "visible" | "hidden", featured: true = shown here). EDIT
+         THAT FILE, not this one; the full directory is tenants.html.
+      ===================================================================== */
+      (function(){
+        function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+        function host(u){try{return new URL(u).host.replace(/^www\./,"");}catch(e){return u;}}
+        function card(t){
+          return '<div class="res-card reveal" id="res-'+esc(t.slug)+'">'
+            +(t.image?'<img src="'+esc(t.image)+'" alt="'+esc(t.imageAlt||t.name)+'"'+(t.imageWidth?' width="'+t.imageWidth+'" height="'+t.imageHeight+'"':'')+' loading="lazy">':'')
+            +(t.logo?'<div class="mark"><img src="'+esc(t.logo)+'" alt="'+esc(t.name)+' logo"'+(t.logoWidth?' width="'+t.logoWidth+'" height="'+t.logoHeight+'"':'')+' loading="lazy"></div>':'')
+            +'<div class="meta">'+esc(t.sector)+'</div><h3>'+esc(t.name)+'</h3><p>'+esc(t.summary||t.tagline||'')+'</p>'
+            +'<div class="links">'+(t.website?'<a href="'+esc(t.website)+'" rel="noopener">Visit '+esc(host(t.website))+' &rarr;</a>':'')+'<a href="tenants.html#'+esc(t.slug)+'">Full profile &rarr;</a></div></div>';
+        }
+        fetch("tenants.json?v=" + Date.now())
+          .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function(d){
+            var feat=d.tenants.filter(function(t){return t.status==="visible"&&t.featured;});
+            if(!feat.length) return;
+            var g=document.getElementById("residentGrid"); g.innerHTML=feat.map(card).join("");
+            g.querySelectorAll(".reveal").forEach(function(el){if(window.kbcReveal){window.kbcReveal(el);}else{el.classList.add("in");}});
+          })
+          .catch(function(){});
+      })();
+    </script>
+    <p class="res-more reveal"><a class="btn btn-ink" href="tenants.html">See all businesses <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></p>
   </div>
 </section>
 
@@ -440,7 +477,7 @@ textarea{min-height:120px;resize:vertical}
         <p style="max-width:34ch">Serviced offices, storage &amp; flexible workspace to rent in the heart of Sleaford, Lincolnshire &mdash; with 24-hour access.</p>
         <p style="margin-top:14px;font-size:.86rem;max-width:60ch">Serving Sleaford, North Kesteven &amp; Lincolnshire &mdash; Grantham, Lincoln, Newark, Boston, Bourne, Spalding, Stamford and the villages between.</p>
       </div>
-      <div class="foot-col"><h3>Explore</h3><a href="#about">About</a><a href="#available">Available offices</a><a href="#amenities">Amenities</a><a href="office-space-sleaford.html">Office space in Sleaford</a><a href="gallery.html">Gallery</a><a href="#enquire">Enquire</a></div>
+      <div class="foot-col"><h3>Explore</h3><a href="#about">About</a><a href="#available">Available offices</a><a href="#amenities">Amenities</a><a href="office-space-sleaford.html">Office space in Sleaford</a><a href="gallery.html">Gallery</a><a href="tenants.html">Businesses at the centre</a><a href="#enquire">Enquire</a></div>
       <div class="foot-col"><h3>Part of TAG Sleaford</h3><a href="https://tagsleaford.com">Business services in Sleaford</a><a href="https://tagsleaford.com/web-design-sleaford.html">Web design in Sleaford</a><a href="https://tagsleaford.com/local-seo-sleaford.html">Local SEO in Sleaford</a><a href="https://glowsleaford.com" rel="noopener">GLOW Sleaford</a></div>
       <div class="foot-col"><h3>Contact</h3><a href="#enquire">Enquire about offices</a><a href="tel:+441522424963">01522 424963</a><a href="#location">Kesteven Street, Sleaford</a></div>
     </div>
@@ -461,7 +498,8 @@ textarea{min-height:120px;resize:vertical}
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
     els.forEach(function(el){io.observe(el);});
-  }else{els.forEach(function(el){el.classList.add('in');});}
+    window.kbcReveal=function(el){io.observe(el);};
+  }else{els.forEach(function(el){el.classList.add('in');});window.kbcReveal=function(el){el.classList.add('in');};}
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-count]').forEach(function(el){
     var end=parseFloat(el.getAttribute('data-count'));
