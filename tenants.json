@@ -1,0 +1,158 @@
+{
+  "_readme": "Businesses at Kesteven Business Centre for centre.tagsleaford.com. EDIT THIS FILE ONLY - tenants.html and the homepage 'Businesses at the centre' strip render it automatically. status: visible | hidden (hidden entries are NEVER rendered - flip to visible once the business has OK'd it). featured: true = large photo card with full write-up on tenants.html AND a card on the homepage; false = compact card (name, sector, one line, link) on tenants.html only. Order = display order. Optional fields: summary (one-liner for cards), phone, email, hours, highlights[], range[{heading,items[]}], applications[], imageAlt/imageWidth/imageHeight, logoWidth/logoHeight. Only put an email on a card if the business has published it themselves. After editing, commit to main; GitHub Pages redeploys in ~1 min.",
+  "updated": "2026-09-25",
+  "tenants": [
+    {
+      "slug": "glow-sleaford",
+      "name": "GLOW Sleaford",
+      "tagline": "The superfood café on the ground floor",
+      "summary": "Açaí bowls, protein shakes, smoothies, coffee & matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats.",
+      "description": "GLOW Sleaford is the superfood café on the ground floor of Kesteven Business Centre — açaí bowls, protein shakes, smoothies, coffee & matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats. Open Monday to Friday, 8am–4.30pm.",
+      "sector": "Superfood café",
+      "unit": "Ground floor",
+      "website": "https://glowsleaford.com",
+      "logo": "",
+      "image": "https://tagsleaford.com/glow-door.jpg",
+      "imageAlt": "A GLOW Sleaford superfood bowl — the café on the ground floor of Kesteven Business Centre, Sleaford",
+      "imageWidth": 800,
+      "imageHeight": 800,
+      "phone": "01529 707123",
+      "hours": "Mon–Fri 8am–4.30pm",
+      "highlights": [
+        "Açaí bowls",
+        "Protein shakes",
+        "Smoothies",
+        "Coffee & matcha",
+        "Protein salads & bakes",
+        "Delivery & Uber Eats"
+      ],
+      "status": "visible",
+      "featured": true
+    },
+    {
+      "slug": "k2b",
+      "name": "K2B Ltd",
+      "tagline": "Innovation to Procurement — Ideas to Reality",
+      "summary": "A specialist supplier of natural, clean-label food and drink ingredients — agent for worldwide manufacturers for over 20 years, ISO 9001:2015 certified.",
+      "description": "K2B Ltd acts as an agent for worldwide manufacturers in the food and drinks industry. In business for over 20 years, K2B has built a reputation for reliability, customer service and technical back-up, and is committed to supplying quality-assured ingredients at competitive prices. The company is ISO 9001:2015 certified and all of its manufacturing partners hold GFSI (Global Food Safety Initiative) certification. All products are made from natural ingredients and are GMO-free.",
+      "sector": "Food & drink ingredients",
+      "unit": "Suite 14/15, first floor (sales office)",
+      "website": "https://k2b.co.uk/",
+      "logo": "k2b-logo.webp",
+      "logoWidth": 1792,
+      "logoHeight": 1267,
+      "image": "k2b-flax-field.webp",
+      "imageAlt": "A field of flax in flower — K2B Ltd, food and drink ingredients supplier at Kesteven Business Centre, Sleaford",
+      "imageWidth": 1600,
+      "imageHeight": 1177,
+      "phone": "0208 341 1010 (option 1)",
+      "email": "sales@k2b.co.uk",
+      "range": [
+        {
+          "heading": "Functional products",
+          "items": [
+            "FiberSmart® natural sweetener — high fibre, low calorie; liquid or powder",
+            "EnergySmart® — grape juice and rice syrup for sustainable energy",
+            "MoisturLok® natural humectant — liquid or powder; sugar-free version available"
+          ]
+        },
+        {
+          "heading": "Protein inclusions",
+          "items": [
+            "ProCrisPea — pea-based 3–7 mm nugget, 50% protein",
+            "Green proteins — pea, rice, pumpkin, sunflower",
+            "Rice & pea crispies"
+          ]
+        },
+        {
+          "heading": "Non-fruit",
+          "items": [
+            "Allergen-free milled flaxseed — golden or brown",
+            "Savoury flavours",
+            "Liquid extracts — cocoa, coffee, oak",
+            "Spray-dried powders — golden syrup, honey, maple",
+            "Freeze-dried herbs & vegetables",
+            "Emulsions and neutral bases"
+          ]
+        },
+        {
+          "heading": "Fruit",
+          "items": [
+            "CherryPURE® powder (50:1)",
+            "Fruit powders",
+            "Vacuum-dried and freeze-dried fruits — pieces or powders",
+            "Citrus essential oils",
+            "Fruit flavours"
+          ]
+        }
+      ],
+      "applications": [
+        "Beverages",
+        "Bakery",
+        "Cereals",
+        "Confectionery",
+        "Health & wellbeing",
+        "Pet food",
+        "Sports nutrition"
+      ],
+      "status": "visible",
+      "featured": true
+    },
+    {
+      "slug": "adults-supporting-adults",
+      "name": "Adults Supporting Adults",
+      "tagline": "Adult community support services in Lincolnshire",
+      "summary": "",
+      "description": "Not-for-profit registered charity providing adult community support services to the people of Lincolnshire.",
+      "sector": "Charity · Adult community support",
+      "unit": "Office 3",
+      "website": "https://asaorg.co.uk",
+      "logo": "",
+      "image": "",
+      "status": "hidden",
+      "featured": false
+    },
+    {
+      "slug": "daniel-palmer-counselling",
+      "name": "Daniel Palmer Counselling",
+      "tagline": "",
+      "summary": "",
+      "description": "",
+      "sector": "Counselling",
+      "unit": "Office 12",
+      "website": "",
+      "logo": "",
+      "image": "",
+      "status": "hidden",
+      "featured": false
+    },
+    {
+      "slug": "gemz-fashion",
+      "name": "Gemz Fashion Ltd",
+      "tagline": "",
+      "summary": "",
+      "description": "",
+      "sector": "Fashion",
+      "unit": "Office 7",
+      "website": "",
+      "logo": "",
+      "image": "",
+      "status": "hidden",
+      "featured": false
+    },
+    {
+      "slug": "phoenix-holistic-therapy",
+      "name": "Phoenix Holistic Therapy",
+      "tagline": "",
+      "summary": "",
+      "description": "",
+      "sector": "Holistic therapy",
+      "unit": "Office 11",
+      "website": "",
+      "logo": "",
+      "image": "",
+      "status": "hidden",
+      "featured": false
+    }
+  ]
+}
