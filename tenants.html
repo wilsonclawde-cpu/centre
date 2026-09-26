@@ -84,6 +84,31 @@ h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-h
 .nav-links a:not(.btn):hover::after,.nav-links a[aria-current]::after{transform:scaleX(1)}
 .nav-links .btn{padding:11px 20px;font-size:.9rem}
 @media(max-width:960px){.nav-links a:not(.btn){display:none}}
+/* mobile nav (<=960px): hamburger + slide-down panel. No effect >=961px. */
+.nav-toggle{display:none;position:relative;flex:none;width:48px;height:48px;margin:0 -8px 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-toggle span{position:absolute;left:13px;width:22px;height:2px;border-radius:2px;background:currentColor;transition:transform .35s var(--ease),top .35s var(--ease)}
+.nav-toggle span:nth-child(1){top:19px}.nav-toggle span:nth-child(2){top:27px}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){top:23px;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){top:23px;transform:rotate(-45deg)}
+.nav-panel{display:none}
+@media(max-width:960px){
+.nav-links{gap:10px}
+.nav-toggle{display:inline-flex}
+.nav.menu-open,.nav.on-dark.menu-open.is-scrolled{background:var(--ink);color:#fff;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav.menu-open .nav-in{height:var(--nav-h)}
+.nav-panel{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;height:calc(100vh - var(--nav-h));height:calc(100dvh - var(--nav-h));pointer-events:none}
+.nav-panel[hidden]{display:none}
+.nav-panel-in{pointer-events:auto;background:var(--ink);color:#fff;border-top:1px solid var(--line-dark);padding:6px clamp(20px,4vw,48px) 28px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 30px 50px -30px rgba(0,0,0,.7);animation:navDrop .4s var(--ease) both}
+.nav-panel-in a:not(.btn){display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:58px;padding:12px 0;border-bottom:1px solid var(--line-dark);font-family:var(--display);font-weight:700;font-size:1.45rem;letter-spacing:-.03em;line-height:1;color:#fff}
+.nav-panel-in a:not(.btn)::after{content:"\2192";color:var(--accent);font-weight:500;transition:transform .3s var(--ease)}
+.nav-panel-in a:not(.btn):hover::after{transform:translateX(4px)}
+.nav-panel-in a[aria-current]{color:var(--accent)}
+.nav-panel-in .btn{margin-top:20px;width:100%;justify-content:center;padding:17px 26px;font-size:1.05rem}
+.nav-panel-back{pointer-events:auto;flex:1;background:rgba(11,12,16,.55);animation:navFade .4s var(--ease) both}
+html.menu-lock,html.menu-lock body{overflow:hidden}
+}
+@keyframes navDrop{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@keyframes navFade{from{opacity:0}to{opacity:1}}
 section{padding:clamp(72px,9vw,120px) 0}
 .sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px;align-items:end;margin-bottom:clamp(36px,5vw,60px)}
 .sec-head h2{font-size:clamp(2.2rem,5vw,4.2rem);margin-top:14px}
@@ -155,6 +180,7 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
 .meta::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
 .meta i{font-style:normal;color:var(--muted-dark)}
 .ten-feat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:20px;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .3s}
+.ten-feat{scroll-margin-top:calc(var(--nav-h) + 16px)}
 .ten-feat:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(11,12,16,.45);border-color:rgba(11,12,16,.3)}
 .ten-feat .art{position:relative;background:var(--ink);min-height:360px;overflow:hidden}
 .ten-feat .art .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
@@ -224,7 +250,20 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
       <a href="/#location">Location</a>
       <a href="/gallery.html">Gallery</a>
       <a class="btn btn-accent nav-cta" href="/#enquire">Enquire</a>
+      <button class="nav-toggle" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
     </div>
+  </div>
+  <div class="nav-panel" id="navMenu" hidden>
+    <div class="nav-panel-in">
+      <a href="/tenants.html" aria-current="page">Our Tenants</a>
+      <a href="/#about">About</a>
+      <a href="/#available">Available</a>
+      <a href="/#amenities">Amenities</a>
+      <a href="/#location">Location</a>
+      <a href="/gallery.html">Gallery</a>
+      <a class="btn btn-accent" href="/#enquire">Enquire</a>
+    </div>
+    <div class="nav-panel-back"></div>
   </div>
 </nav>
 <header class="ten-hero on-dark">
@@ -242,13 +281,20 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
       <div class="reveal"><span class="eyebrow">The directory</span><h2>Who&rsquo;s in the <span class="em">building.</span></h2></div>
       <p class="reveal" data-delay="1">Independent businesses under one roof &mdash; from a ground-floor caf&eacute; to an international ingredients agency. Featured businesses first, with a little more about what they do.</p>
     </div>
-    <div id="tenantGrid"></div>
+    <div id="tenantGrid"><!-- pre-rendered from tenants.json by the renderer below (build step); edit tenants.json, not this markup -->
+      <article class="ten-feat reveal" id="glow-sleaford"><div class="art"><img class="photo" src="https://tagsleaford.com/glow-door.jpg" alt="A GLOW Sleaford superfood bowl — the café on the ground floor of Kesteven Business Centre, Sleaford" width="800" height="800" loading="lazy" decoding="async"></div><div class="body"><div class="meta">Superfood café <i>&middot;</i> Ground floor</div><h2>GLOW Sleaford</h2><div class="tag">The superfood café on the ground floor</div><p>GLOW Sleaford is the superfood café on the ground floor of Kesteven Business Centre — açaí bowls, protein shakes, smoothies, coffee &amp; matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats. Open Monday to Friday, 8am–4.30pm.</p><div class="pills"><span>Açaí bowls</span><span>Protein shakes</span><span>Smoothies</span><span>Coffee &amp; matcha</span><span>Protein salads &amp; bakes</span><span>Delivery &amp; Uber Eats</span></div><div class="ten-contact"><a class="btn btn-ink" href="https://glowsleaford.com" rel="noopener">Visit glowsleaford.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a><a class="link" href="tel:+441529707123">01529 707123</a><span>Mon–Fri 8am–4.30pm</span></div></div></article>
+      <article class="ten-feat reveal" id="k2b"><div class="art"><img class="photo" src="k2b-flax-field.webp" alt="A field of flax in flower — K2B Ltd, food and drink ingredients supplier at Kesteven Business Centre, Sleaford" width="1600" height="1177" loading="lazy" decoding="async"><div class="mark"><img src="k2b-logo.webp" alt="K2B Ltd logo" width="1792" height="1267" loading="lazy" decoding="async"></div></div><div class="body"><div class="meta">Food &amp; drink ingredients <i>&middot;</i> Suite 14/15, first floor (sales office)</div><h2>K2B Ltd</h2><div class="tag">Innovation to Procurement — Ideas to Reality</div><p>K2B Ltd acts as an agent for worldwide manufacturers in the food and drinks industry. In business for over 20 years, K2B has built a reputation for reliability, customer service and technical back-up, and is committed to supplying quality-assured ingredients at competitive prices. The company is ISO 9001:2015 certified and all of its manufacturing partners hold GFSI (Global Food Safety Initiative) certification. All products are made from natural ingredients and are GMO-free.</p><h3>What they supply</h3><div class="ten-range"><div><h3>Functional products</h3><ul><li>FiberSmart® natural sweetener — high fibre, low calorie; liquid or powder</li><li>EnergySmart® — grape juice and rice syrup for sustainable energy</li><li>MoisturLok® natural humectant — liquid or powder; sugar-free version available</li></ul></div><div><h3>Protein inclusions</h3><ul><li>ProCrisPea — pea-based 3–7 mm nugget, 50% protein</li><li>Green proteins — pea, rice, pumpkin, sunflower</li><li>Rice &amp; pea crispies</li></ul></div><div><h3>Non-fruit</h3><ul><li>Allergen-free milled flaxseed — golden or brown</li><li>Savoury flavours</li><li>Liquid extracts — cocoa, coffee, oak</li><li>Spray-dried powders — golden syrup, honey, maple</li><li>Freeze-dried herbs &amp; vegetables</li><li>Emulsions and neutral bases</li></ul></div><div><h3>Fruit</h3><ul><li>CherryPURE® powder (50:1)</li><li>Fruit powders</li><li>Vacuum-dried and freeze-dried fruits — pieces or powders</li><li>Citrus essential oils</li><li>Fruit flavours</li></ul></div></div><h3>Applications</h3><div class="pills"><span>Beverages</span><span>Bakery</span><span>Cereals</span><span>Confectionery</span><span>Health &amp; wellbeing</span><span>Pet food</span><span>Sports nutrition</span></div><div class="ten-contact"><a class="btn btn-ink" href="https://k2b.co.uk/" rel="noopener">Visit k2b.co.uk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a><a class="link" href="tel:+442083411010">0208 341 1010 (option 1)</a><a class="link" href="mailto:sales@k2b.co.uk">sales@k2b.co.uk</a></div></div></article>
+    </div>
     <script>
       /* ===== BUSINESSES AT THE CENTRE ======================================
          The directory lives in tenants.json in this repo. EDIT THAT FILE,
          not this one. status: "visible" | "hidden" (hidden is never rendered).
          featured: true = big photo card + full write-up; false = compact card.
-         The fallback list below is only used if tenants.json fails to load.
+         The cards already inside #tenantGrid are pre-rendered from tenants.json
+         by this same renderer (build step) so they are in the page source; on
+         load tenants.json is fetched and re-rendered (identical unless the JSON
+         changed). The fallback list below is only used if tenants.json fails to
+         load AND the grid is empty.
       ===================================================================== */
       const TENANTS_FALLBACK = [{"slug":"glow-sleaford","name":"GLOW Sleaford","tagline":"The superfood café on the ground floor","summary":"Açaí bowls, protein shakes, smoothies, coffee & matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats.","description":"GLOW Sleaford is the superfood café on the ground floor of Kesteven Business Centre — açaí bowls, protein shakes, smoothies, coffee & matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats. Open Monday to Friday, 8am–4.30pm.","sector":"Superfood café","unit":"Ground floor","website":"https://glowsleaford.com","logo":"","image":"https://tagsleaford.com/glow-door.jpg","imageAlt":"A GLOW Sleaford superfood bowl — the café on the ground floor of Kesteven Business Centre, Sleaford","imageWidth":800,"imageHeight":800,"phone":"01529 707123","hours":"Mon–Fri 8am–4.30pm","highlights":["Açaí bowls","Protein shakes","Smoothies","Coffee & matcha","Protein salads & bakes","Delivery & Uber Eats"],"status":"visible","featured":true},{"slug":"k2b","name":"K2B Ltd","tagline":"Innovation to Procurement — Ideas to Reality","summary":"A specialist supplier of natural, clean-label food and drink ingredients — agent for worldwide manufacturers for over 20 years, ISO 9001:2015 certified.","description":"K2B Ltd acts as an agent for worldwide manufacturers in the food and drinks industry. In business for over 20 years, K2B has built a reputation for reliability, customer service and technical back-up, and is committed to supplying quality-assured ingredients at competitive prices. The company is ISO 9001:2015 certified and all of its manufacturing partners hold GFSI (Global Food Safety Initiative) certification. All products are made from natural ingredients and are GMO-free.","sector":"Food & drink ingredients","unit":"Suite 14/15, first floor (sales office)","website":"https://k2b.co.uk/","logo":"k2b-logo.webp","logoWidth":1792,"logoHeight":1267,"image":"k2b-flax-field.webp","imageAlt":"A field of flax in flower — K2B Ltd, food and drink ingredients supplier at Kesteven Business Centre, Sleaford","imageWidth":1600,"imageHeight":1177,"phone":"0208 341 1010 (option 1)","email":"sales@k2b.co.uk","range":[{"heading":"Functional products","items":["FiberSmart® natural sweetener — high fibre, low calorie; liquid or powder","EnergySmart® — grape juice and rice syrup for sustainable energy","MoisturLok® natural humectant — liquid or powder; sugar-free version available"]},{"heading":"Protein inclusions","items":["ProCrisPea — pea-based 3–7 mm nugget, 50% protein","Green proteins — pea, rice, pumpkin, sunflower","Rice & pea crispies"]},{"heading":"Non-fruit","items":["Allergen-free milled flaxseed — golden or brown","Savoury flavours","Liquid extracts — cocoa, coffee, oak","Spray-dried powders — golden syrup, honey, maple","Freeze-dried herbs & vegetables","Emulsions and neutral bases"]},{"heading":"Fruit","items":["CherryPURE® powder (50:1)","Fruit powders","Vacuum-dried and freeze-dried fruits — pieces or powders","Citrus essential oils","Fruit flavours"]}],"applications":["Beverages","Bakery","Cereals","Confectionery","Health & wellbeing","Pet food","Sports nutrition"],"status":"visible","featured":true}];
 
@@ -282,8 +328,9 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
         var feat=vis.filter(function(t){return t.featured;}), rest=vis.filter(function(t){return !t.featured;});
         var out=feat.map(featuredCard).join("");
         if(rest.length){out+='<h2 class="ten-sub">Also in the <span class="em">building.</span></h2><div class="ten-grid">'+rest.map(compactCard).join("")+'</div>';}
+        var shown={};grid.querySelectorAll(".reveal.in").forEach(function(el){shown[el.id]=1;});
         grid.innerHTML=out;
-        grid.querySelectorAll(".reveal").forEach(function(el){if(window.kbcReveal){window.kbcReveal(el);}else{el.classList.add("in");}});
+        grid.querySelectorAll(".reveal").forEach(function(el){if(shown[el.id]){el.classList.add("in");}else if(window.kbcReveal){window.kbcReveal(el);}else{el.classList.add("in");}});
         var ld=document.getElementById("tenantsLd");
         if(ld){ld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"ItemList","name":"Our tenants at Kesteven Business Centre","url":"https://centre.tagsleaford.com/tenants.html","numberOfItems":vis.length,"itemListElement":vis.map(function(t,i){var o={"@type":"Organization","name":t.name,"url":t.website||("https://centre.tagsleaford.com/tenants.html#"+t.slug)};if(t.tagline)o.description=t.tagline;if(t.logo)o.logo="https://centre.tagsleaford.com/"+t.logo;return {"@type":"ListItem","position":i+1,"item":o};})});}
         if(location.hash){var target=document.getElementById(location.hash.slice(1));if(target){target.scrollIntoView();}}
@@ -292,7 +339,7 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
       fetch("tenants.json?v=" + Date.now())
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
         .then(function(d){ renderTenants(d.tenants); })
-        .catch(function(){ renderTenants(TENANTS_FALLBACK); });
+        .catch(function(){ var g=document.getElementById("tenantGrid"); if(g&&!g.children.length) renderTenants(TENANTS_FALLBACK); });
     </script>
   </div>
 </section>
@@ -347,6 +394,38 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
   var nav=document.getElementById('nav');
   function onScroll(){if(nav){nav.classList.toggle('is-scrolled',window.scrollY>24);}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var toggle=document.querySelector('.nav-toggle'),panel=document.getElementById('navMenu');
+  if(nav&&toggle&&panel){
+    var mq=window.matchMedia('(max-width:960px)');
+    function menuOpen(){return toggle.getAttribute('aria-expanded')==='true';}
+    function setMenu(open,refocus){
+      if(open===menuOpen())return;
+      toggle.setAttribute('aria-expanded',open?'true':'false');
+      toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+      panel.hidden=!open;
+      nav.classList.toggle('menu-open',open);
+      document.documentElement.classList.toggle('menu-lock',open);
+      if(open||refocus)toggle.focus();
+    }
+    toggle.addEventListener('click',function(){setMenu(!menuOpen(),false);});
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){setMenu(false,false);}
+      else if(!e.target.closest('.nav-panel-in')){setMenu(false,true);}
+    });
+    document.addEventListener('click',function(e){if(menuOpen()&&!nav.contains(e.target))setMenu(false,true);});
+    document.addEventListener('keydown',function(e){
+      if(!menuOpen())return;
+      if(e.key==='Escape'||e.key==='Esc'){e.preventDefault();setMenu(false,true);return;}
+      if(e.key!=='Tab')return;
+      var f=[toggle].concat(Array.prototype.slice.call(panel.querySelectorAll('a[href]')));
+      var first=f[0],last=f[f.length-1],cur=document.activeElement;
+      if(e.shiftKey&&cur===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&cur===last){e.preventDefault();first.focus();}
+      else if(f.indexOf(cur)<0){e.preventDefault();first.focus();}
+    });
+    var onMq=function(e){if(!e.matches)setMenu(false,false);};
+    if(mq.addEventListener)mq.addEventListener('change',onMq);else if(mq.addListener)mq.addListener(onMq);
+  }
   var y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();
   var els=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
