@@ -86,6 +86,31 @@ h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-h
 .nav-links a:not(.btn):hover::after,.nav-links a[aria-current]::after{transform:scaleX(1)}
 .nav-links .btn{padding:11px 20px;font-size:.9rem}
 @media(max-width:960px){.nav-links a:not(.btn){display:none}}
+/* mobile nav (<=960px): hamburger + slide-down panel. No effect >=961px. */
+.nav-toggle{display:none;position:relative;flex:none;width:48px;height:48px;margin:0 -8px 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-toggle span{position:absolute;left:13px;width:22px;height:2px;border-radius:2px;background:currentColor;transition:transform .35s var(--ease),top .35s var(--ease)}
+.nav-toggle span:nth-child(1){top:19px}.nav-toggle span:nth-child(2){top:27px}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){top:23px;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){top:23px;transform:rotate(-45deg)}
+.nav-panel{display:none}
+@media(max-width:960px){
+.nav-links{gap:10px}
+.nav-toggle{display:inline-flex}
+.nav.menu-open,.nav.on-dark.menu-open.is-scrolled{background:var(--ink);color:#fff;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav.menu-open .nav-in{height:var(--nav-h)}
+.nav-panel{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;height:calc(100vh - var(--nav-h));height:calc(100dvh - var(--nav-h));pointer-events:none}
+.nav-panel[hidden]{display:none}
+.nav-panel-in{pointer-events:auto;background:var(--ink);color:#fff;border-top:1px solid var(--line-dark);padding:6px clamp(20px,4vw,48px) 28px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 30px 50px -30px rgba(0,0,0,.7);animation:navDrop .4s var(--ease) both}
+.nav-panel-in a:not(.btn){display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:58px;padding:12px 0;border-bottom:1px solid var(--line-dark);font-family:var(--display);font-weight:700;font-size:1.45rem;letter-spacing:-.03em;line-height:1;color:#fff}
+.nav-panel-in a:not(.btn)::after{content:"\2192";color:var(--accent);font-weight:500;transition:transform .3s var(--ease)}
+.nav-panel-in a:not(.btn):hover::after{transform:translateX(4px)}
+.nav-panel-in a[aria-current]{color:var(--accent)}
+.nav-panel-in .btn{margin-top:20px;width:100%;justify-content:center;padding:17px 26px;font-size:1.05rem}
+.nav-panel-back{pointer-events:auto;flex:1;background:rgba(11,12,16,.55);animation:navFade .4s var(--ease) both}
+html.menu-lock,html.menu-lock body{overflow:hidden}
+}
+@keyframes navDrop{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@keyframes navFade{from{opacity:0}to{opacity:1}}
 section{padding:clamp(72px,9vw,120px) 0}
 .sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 64px;align-items:end;margin-bottom:clamp(36px,5vw,60px)}
 .sec-head h2{font-size:clamp(2.2rem,5vw,4.2rem);margin-top:14px}
@@ -259,7 +284,20 @@ textarea{min-height:120px;resize:vertical}
       <a href="#location">Location</a>
       <a href="gallery.html">Gallery</a>
       <a class="btn btn-accent nav-cta" href="#enquire">Enquire</a>
+      <button class="nav-toggle" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
     </div>
+  </div>
+  <div class="nav-panel" id="navMenu" hidden>
+    <div class="nav-panel-in">
+      <a href="tenants.html">Our Tenants</a>
+      <a href="#about">About</a>
+      <a href="#available">Available</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#location">Location</a>
+      <a href="gallery.html">Gallery</a>
+      <a class="btn btn-accent" href="#enquire">Enquire</a>
+    </div>
+    <div class="nav-panel-back"></div>
   </div>
 </nav>
 
@@ -493,6 +531,38 @@ textarea{min-height:120px;resize:vertical}
   var nav=document.getElementById('nav');
   function onScroll(){if(nav){nav.classList.toggle('is-scrolled',window.scrollY>24);}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var toggle=document.querySelector('.nav-toggle'),panel=document.getElementById('navMenu');
+  if(nav&&toggle&&panel){
+    var mq=window.matchMedia('(max-width:960px)');
+    function menuOpen(){return toggle.getAttribute('aria-expanded')==='true';}
+    function setMenu(open,refocus){
+      if(open===menuOpen())return;
+      toggle.setAttribute('aria-expanded',open?'true':'false');
+      toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+      panel.hidden=!open;
+      nav.classList.toggle('menu-open',open);
+      document.documentElement.classList.toggle('menu-lock',open);
+      if(open||refocus)toggle.focus();
+    }
+    toggle.addEventListener('click',function(){setMenu(!menuOpen(),false);});
+    panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){setMenu(false,false);}
+      else if(!e.target.closest('.nav-panel-in')){setMenu(false,true);}
+    });
+    document.addEventListener('click',function(e){if(menuOpen()&&!nav.contains(e.target))setMenu(false,true);});
+    document.addEventListener('keydown',function(e){
+      if(!menuOpen())return;
+      if(e.key==='Escape'||e.key==='Esc'){e.preventDefault();setMenu(false,true);return;}
+      if(e.key!=='Tab')return;
+      var f=[toggle].concat(Array.prototype.slice.call(panel.querySelectorAll('a[href]')));
+      var first=f[0],last=f[f.length-1],cur=document.activeElement;
+      if(e.shiftKey&&cur===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&cur===last){e.preventDefault();first.focus();}
+      else if(f.indexOf(cur)<0){e.preventDefault();first.focus();}
+    });
+    var onMq=function(e){if(!e.matches)setMenu(false,false);};
+    if(mq.addEventListener)mq.addEventListener('change',onMq);else if(mq.addListener)mq.addListener(onMq);
+  }
   var y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();
   var els=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
