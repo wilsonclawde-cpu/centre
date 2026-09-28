@@ -1,6 +1,6 @@
 {
   "_readme": "Businesses at Kesteven Business Centre for centre.tagsleaford.com. EDIT THIS FILE ONLY - tenants.html and the homepage 'Businesses at the centre' strip render it automatically. status: visible | hidden (hidden entries are NEVER rendered - flip to visible once the business has OK'd it). featured: true = large photo card with full write-up on tenants.html AND a card on the homepage; false = compact card (name, sector, one line, link) on tenants.html only. Order = display order. Optional fields: summary (one-liner for cards), phone, email, hours, highlights[], range[{heading,items[]}], applications[], imageAlt/imageWidth/imageHeight, logoWidth/logoHeight. Only put an email on a card if the business has published it themselves. After editing, commit to main; GitHub Pages redeploys in ~1 min.",
-  "updated": "2026-09-25",
+  "updated": "2026-09-28",
   "tenants": [
     {
       "slug": "glow-sleaford",
@@ -142,17 +142,31 @@
     },
     {
       "slug": "phoenix-holistic-therapy",
-      "name": "Phoenix Holistic Therapy",
-      "tagline": "",
-      "summary": "",
-      "description": "",
-      "sector": "Holistic therapy",
-      "unit": "Office 11",
-      "website": "",
+      "name": "Phoenix Lymphatic Therapy",
+      "tagline": "Specialist lymphatic therapy in Sleaford",
+      "summary": "Lymphatic therapy for lymphoedema, lipoedema and post-op recovery, from a fully qualified, MLDUK-registered practitioner.",
+      "description": "Lesley Batten is delighted to be a tenant at Kesteven Business Centre. She offers lymphatic therapy for a variety of conditions, including lymphoedema, lipoedema and post-op recovery. She is fully qualified, is registered with MLDUK, the British Lymphology Society, Lipoedema UK and the Aftercare Academy. She updates her qualifications regularly in line with current professional guidelines and has many years’ experience treating a variety of conditions. Appointments are available in Sleaford, with a limited number in the surrounding area including Lincoln, Newark and Grantham. If you would like more details, please contact her on 07977 883141, PhoenixLesleyB@gmail.com, or via her website phoenixholistictherapy.com.",
+      "sector": "Lymphatic therapy & wellbeing",
+      "unit": "Office 11, ground floor",
+      "website": "https://phoenixholistictherapy.com/",
       "logo": "",
-      "image": "",
-      "status": "hidden",
-      "featured": false
+      "image": "phoenix-lesley.webp",
+      "imageAlt": "Lesley Batten of Phoenix Lymphatic Therapy at Kesteven Business Centre, Sleaford",
+      "imageWidth": 480,
+      "imageHeight": 640,
+      "phone": "07977 883141",
+      "email": "PhoenixLesleyB@gmail.com",
+      "highlights": [
+        "Lymphoedema",
+        "Lipoedema",
+        "Post-op recovery",
+        "Registered with MLDUK",
+        "British Lymphology Society",
+        "Lipoedema UK",
+        "Aftercare Academy"
+      ],
+      "status": "visible",
+      "featured": true
     }
   ]
 }
