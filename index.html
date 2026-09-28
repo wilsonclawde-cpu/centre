@@ -272,7 +272,9 @@ textarea{min-height:120px;resize:vertical}
 @media(max-width:480px){.row{grid-template-columns:1fr}}
 /* Residents */
 .residents{background:var(--paper)}
-.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1023px){.res-grid{grid-template-columns:1fr 1fr}}
+#res-phoenix-holistic-therapy img{object-position:50% 0}#res-phoenix-holistic-therapy::before{background:linear-gradient(180deg,rgba(11,12,16,.1) 0%,rgba(11,12,16,.55) 30%,rgba(11,12,16,.9) 55%,rgba(11,12,16,.96) 100%)}
 .res-card .mark{position:absolute;left:20px;top:20px;background:#fff;border-radius:var(--r-sm);padding:8px 12px;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
 .res-card .mark img{position:static;width:auto;height:38px;object-fit:contain;transition:none}
 .res-card .meta{font-family:var(--display);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
@@ -513,6 +515,7 @@ textarea{min-height:120px;resize:vertical}
     <div class="res-grid" id="residentGrid">
       <div class="res-card reveal" id="res-glow-sleaford"><img src="https://tagsleaford.com/glow-door.jpg" alt="A GLOW Sleaford superfood bowl — the café on the ground floor of Kesteven Business Centre, Sleaford" width="800" height="800" loading="lazy"><div class="meta">Superfood café</div><h3>GLOW Sleaford</h3><p>Açaí bowls, protein shakes, smoothies, coffee &amp; matcha, protein salads and bakes. Walk in, or order for delivery and Uber Eats.</p><div class="links"><a href="https://glowsleaford.com" rel="noopener">Visit glowsleaford.com &rarr;</a><a href="tenants.html#glow-sleaford">Full profile &rarr;</a></div></div>
       <div class="res-card reveal" id="res-k2b"><img src="k2b-flax-field.webp" alt="A field of flax in flower — K2B Ltd, food and drink ingredients supplier at Kesteven Business Centre, Sleaford" width="1600" height="1177" loading="lazy"><div class="mark"><img src="k2b-logo.webp" alt="K2B Ltd logo" width="1792" height="1267" loading="lazy"></div><div class="meta">Food &amp; drink ingredients</div><h3>K2B Ltd</h3><p>A specialist supplier of natural, clean-label food and drink ingredients — agent for worldwide manufacturers for over 20 years, ISO 9001:2015 certified.</p><div class="links"><a href="https://k2b.co.uk/" rel="noopener">Visit k2b.co.uk &rarr;</a><a href="tenants.html#k2b">Full profile &rarr;</a></div></div>
+      <div class="res-card reveal" id="res-phoenix-holistic-therapy"><img src="phoenix-lesley.webp" alt="Lesley Batten of Phoenix Lymphatic Therapy at Kesteven Business Centre, Sleaford" width="480" height="640" loading="lazy"><div class="meta">Lymphatic therapy &amp; wellbeing</div><h3>Phoenix Lymphatic Therapy</h3><p>Lymphatic therapy for lymphoedema, lipoedema and post-op recovery, from a fully qualified, MLDUK-registered practitioner.</p><div class="links"><a href="https://phoenixholistictherapy.com/" rel="noopener">Visit phoenixholistictherapy.com &rarr;</a><a href="tenants.html#phoenix-holistic-therapy">Full profile &rarr;</a></div></div>
     </div>
     <script>
       /* ===== BUSINESSES AT THE CENTRE ======================================
