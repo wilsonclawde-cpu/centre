@@ -1,6 +1,6 @@
 {
   "_readme": "Businesses at Kesteven Business Centre for centre.tagsleaford.com. EDIT THIS FILE ONLY - tenants.html and the homepage 'Businesses at the centre' strip render it automatically. status: visible | hidden (hidden entries are NEVER rendered - flip to visible once the business has OK'd it). featured: true = large photo card with full write-up on tenants.html AND a card on the homepage; false = compact card (name, sector, one line, link) on tenants.html only. Order = display order. Optional fields: summary (one-liner for cards), phone, email, hours, highlights[], range[{heading,items[]}], applications[], imageAlt/imageWidth/imageHeight, logoWidth/logoHeight. Only put an email on a card if the business has published it themselves. After editing, commit to main; GitHub Pages redeploys in ~1 min.",
-  "updated": "2026-09-28",
+  "updated": "2026-10-07",
   "tenants": [
     {
       "slug": "glow-sleaford",
@@ -115,16 +115,28 @@
     {
       "slug": "daniel-palmer-counselling",
       "name": "Daniel Palmer Counselling",
-      "tagline": "",
-      "summary": "",
-      "description": "",
-      "sector": "Counselling",
-      "unit": "Office 12",
-      "website": "",
+      "tagline": "Counselling in Sleaford — in person and online",
+      "summary": "BACP-registered counselling in Sleaford, in person and online — addiction, trauma, men’s mental health, ADHD and autism.",
+      "description": "Daniel Palmer offers online and face-to-face counselling in Sleaford from Kesteven Business Centre, working with addiction, trauma, men’s mental health, ADHD and autism. He is BACP registered. For more details, visit his website.",
+      "sector": "Counselling & mental health",
+      "unit": "Office 12, ground floor",
+      "website": "https://www.danielpalmercounselling.co.uk/",
       "logo": "",
-      "image": "",
-      "status": "hidden",
-      "featured": false
+      "image": "daniel-palmer.webp",
+      "status": "visible",
+      "featured": true,
+      "imageAlt": "Daniel Palmer of Daniel Palmer Counselling at Kesteven Business Centre, Sleaford",
+      "imageWidth": 473,
+      "imageHeight": 795,
+      "highlights": [
+        "Addiction",
+        "Trauma",
+        "Men’s mental health",
+        "ADHD",
+        "Autism",
+        "BACP registered",
+        "Face to face & online"
+      ]
     },
     {
       "slug": "gemz-fashion",
