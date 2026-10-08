@@ -302,6 +302,18 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
 
     <div class="ok" id="sentOk" role="status">Thank you &mdash; your booking details have been received. We will confirm your total and payment link by email shortly.</div>
 
+    <div class="ok" id="payNow" style="display:none;background:#fff;border-color:var(--ink)">
+      <div style="font-family:var(--display);font-size:1.2rem;margin-bottom:6px">Step 2: pay securely by card</div>
+      <p style="font-weight:400;margin-bottom:12px">Your booking details are received. To confirm your booking, please pay online now (at least 24 hours before your start time). Payments are taken securely by Stripe.</p>
+      <p id="payRoomNote" style="font-weight:600;margin:6px 0"></p>
+      <a class="btn btn-accent" id="payRoom" href="#" rel="noopener">Pay for room hire</a>
+      <div id="payLunchWrap" style="margin-top:16px;display:none">
+        <p id="payLunchNote" style="font-weight:600;margin:6px 0"></p>
+        <a class="btn btn-ink" id="payLunch" href="#" rel="noopener">Pay for lunch</a>
+      </div>
+    </div>
+    <div class="ok" id="invNow" style="display:none"><b>Pay by invoice:</b> we will email your invoice to the address you gave. Payment is required at least 24 hours before your booking starts.</div>
+
     <div class="bk-grid">
       <form action="https://api.web3forms.com/submit" method="POST" id="bookForm">
         <input type="hidden" name="access_key" value="4011b5b9-4b83-437a-a35d-baac02080912">
@@ -395,9 +407,9 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
         <p>Payment is due <b>24 hours in advance</b>. Pay by card using a secure Stripe link, or ask us to send an invoice. Either is emailed to the address you give us.</p>
         <hr>
         <h2>Car parking</h2>
-        <p><b>Eastgate car park</b> (what3words: <i>prove.prep.bumps</i>; car parking app code 15003).</p>
+        <p>Parking is at the rear of the building: <b>Eastgate car park</b> (what3words: <i>prove.prep.bumps</i>; car parking app code 15003).</p>
         <ul>
-          <li>Monday&ndash;Saturday, ticket required 08:00&ndash;18:00: free up to 1 hour, &pound;2.00 up to 3 hours, &pound;4.00 over 3 hours.</li>
+          <li>Monday&ndash;Saturday, ticket required 08:00&ndash;18:00: free for up to 1 hour, &pound;2.00 up to 3 hours, &pound;4.00 over 3 hours.</li>
           <li>Sundays and bank holidays: free.</li>
           <li>Blue Badge holders park free &mdash; please display your badge and ticket.</li>
         </ul>
@@ -444,6 +456,24 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
   }
   ['dur','people','start','end','q_lunch'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);document.getElementById(id).addEventListener('change',calc);});
   calc();
+  var LINKS={half:'https://buy.stripe.com/dRm28t3ZUcASdrz0Yr6Ri02',full:'https://buy.stripe.com/fZuaEZbsm7gydrz36z6Ri03',hour:'https://buy.stripe.com/9B6fZj2VQ9oGfzH5eH6Ri04',lunch:'https://buy.stripe.com/5kQ8wRaoiasKevDePh6Ri05'};
+  if(q.get('sent')==='1'){
+    var pay=q.get('pay'),hire=q.get('hire')||'half',hrsN=+q.get('hours')||1,ln=+q.get('lunch')||0;
+    if(pay==='card'){
+      document.getElementById('payNow').style.display='block';
+      var pr=document.getElementById('payRoom');pr.href=LINKS[hire]||LINKS.half;
+      var rn={half:'Room hire, half day: \u00a350.00',full:'Room hire, full day: \u00a390.00',hour:'Room hire: \u00a315.00 per hour. On the payment page, set the quantity to '+hrsN+(hrsN===1?' hour.':' hours.')}[hire];
+      document.getElementById('payRoomNote').textContent=rn;
+      if(ln>0){document.getElementById('payLunchWrap').style.display='block';document.getElementById('payLunch').href=LINKS.lunch;document.getElementById('payLunchNote').textContent='Lunch: \u00a35.95 per head. On the payment page, set the quantity to '+ln+'.';}
+      document.getElementById('sentOk').style.display='none';
+    } else {document.getElementById('invNow').style.display='block';}
+  }
+  document.getElementById('bookForm').addEventListener('submit',function(){
+    var m=document.querySelector('input[name=payment_method]:checked');var card=m&&m.value.indexOf('card')>-1;
+    var h=Math.max(1,Math.ceil(hrs()));
+    var r='https://centre.tagsleaford.com/book-meeting-room.html?sent=1&pay='+(card?'card':'invoice')+'&hire='+document.getElementById('dur').value+'&hours='+h+'&lunch='+(+document.getElementById('q_lunch').value||0);
+    document.querySelector('input[name=redirect]').value=r;
+  });
 })();
 </script>
 </main>
